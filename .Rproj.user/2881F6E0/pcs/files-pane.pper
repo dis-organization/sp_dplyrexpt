@@ -1,0 +1,9 @@
+{
+    "path" : "~/rspatial/pkg/sp",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

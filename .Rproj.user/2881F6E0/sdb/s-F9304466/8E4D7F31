@@ -1,0 +1,18 @@
+{
+    "contents" : "## sp with dplyr MDS\n\n## internal function \"can be a data frame\" .canbedf \n## modified\n# \"Class-SpatialPolygonsDataFrame.R\"\n# \"Class-SpatialPointsDataFrame.R\"\n# \"Class-SpatialLinesDataFrame.R\"\n# \"Class-SpatialGridDataFrame.R\"\n# \"SpatialPointsDataFrame-methods.R\"\n##with if (!.canbedf(object@data)) stop(\"data should be or extend a data.frame\")\n\n## change from data.frame to ANY in \n# \"SpatialPointsDataFrame-methods.R\"\n#setReplaceMethod(\"coordinates\", signature(object = \"ANY\", value = \"ANY\"),\n#                 function(object, value) {\n     \n              \nsetMethod(\"coordinates\", \"ANY\", function(obj)coordinates(as.matrix(obj)) )\n\nsetMethod(\"as_data_frame\", \"Spatial\", function(x) as_data_frame(as.data.frame(x)))\n\n## in code examples in intro_sp_dplyr.R\n##added %>% as_data_frame\n\n\n",
+    "created" : 1428802993902.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1917537370",
+    "id" : "8E4D7F31",
+    "lastKnownWriteTime" : 1428804513,
+    "path" : "~/rspatial/pkg/sp/R/AAA_dplyr-mods.R",
+    "project_path" : "R/AAA_dplyr-mods.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

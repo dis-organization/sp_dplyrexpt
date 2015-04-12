@@ -1,0 +1,11 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+            "*.R"
+        ],
+        "path" : "~/rspatial/pkg/sp/R",
+        "query" : "setMethod(\"coordinates\", \"ANY\"",
+        "regex" : false
+    }
+}

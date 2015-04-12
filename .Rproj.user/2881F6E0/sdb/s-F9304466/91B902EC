@@ -1,0 +1,17 @@
+{
+    "contents" : "Package: sp\nVersion: 1.1-0\nDate: 2015-04-09\nTitle: Classes and Methods for Spatial Data\nAuthors@R: c(person(\"Edzer\", \"Pebesma\", role = c(\"aut\", \"cre\"),\n\t\t\t\temail = \"edzer.pebesma@uni-muenster.de\"),\n\t\t\tperson(\"Roger\", \"Bivand\", role = \"aut\",\n            \temail = \"Roger.Bivand@nhh.no\"),\n\t\t\tperson(\"Barry\", \"Rowlingson\", role = \"ctb\"),\n\t\t\tperson(\"Virgilio\", \"Gomez-Rubio\", role = \"ctb\"),\n\t\t\tperson(\"Robert\", \"Hijmans\", role = \"ctb\"),\n\t\t\tperson(\"Michael\", \"Sumner\", role = \"ctb\"),\n\t\t\tperson(\"Don\", \"MacQueen\", role = \"ctb\"))\nDepends: R (>= 3.0.0)\nImports: methods, graphics, utils, lattice, grid, dplyr\nSuggests: RColorBrewer, rgdal (>= 0.8-7), rgeos (>= 0.2-20), gstat\nDescription: Classes and methods for spatial\n  data; the classes document where the spatial location information\n  resides, for 2D or 3D data. Utility functions are provided, e.g. for\n  plotting data as maps, spatial selection, as well as methods for\n  retrieving coordinates, for subsetting, print, summary, etc.\nLicense: GPL (>= 2)\nURL: https://r-forge.r-project.org/projects/rspatial/ http://rspatial.r-forge.r-project.org/\nCollate: bpy.colors.R AAA.R Class-CRS.R CRS-methods.R \n\tClass-Spatial.R Spatial-methods.R projected.R Class-SpatialPoints.R\n\tSpatialPoints-methods.R Class-SpatialPointsDataFrame.R\n\tSpatialPointsDataFrame-methods.R Class-GridTopology.R\n\tClass-SpatialGrid.R Class-SpatialGridDataFrame.R\n\tClass-SpatialLines.R SpatialLines-methods.R\n\tClass-SpatialLinesDataFrame.R SpatialLinesDataFrame-methods.R\n\tClass-SpatialPolygons.R Class-SpatialPolygonsDataFrame.R\n\tSpatialPolygons-methods.R SpatialPolygonsDataFrame-methods.R\n\tGridTopology-methods.R SpatialGrid-methods.R\n\tSpatialGridDataFrame-methods.R SpatialPolygons-internals.R\n\tpoint.in.polygon.R SpatialPolygons-displayMethods.R\n\tzerodist.R image.R stack.R bubble.R mapasp.R select.spatial.R\n\tgridded.R asciigrid.R spplot.R over.R spsample.R\n\trecenter.R dms.R gridlines.R spdists.R rbind.R flipSGDF.R\n\tchfids.R loadmeuse.R compassRose.R surfaceArea.R spOptions.R\n\tsubset.R disaggregate.R sp_spat1.R merge.R aggregate.R AAA_dplyr-mods.R\n",
+    "created" : 1428804480214.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3263473625",
+    "id" : "91B902EC",
+    "lastKnownWriteTime" : 1428804527,
+    "path" : "~/rspatial/pkg/sp/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "dcf"
+}

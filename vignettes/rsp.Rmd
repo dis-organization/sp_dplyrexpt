@@ -1,0 +1,53 @@
+---
+title: "Untitled"
+author: "Michael Sumner"
+date: "12/04/2015"
+output: html_document
+---
+
+I'm very interested to see if we could seamlessly allow these tbl_df objects with existing code, it looks like we can as long as our tests are based on inherits and methods like dim/nrow etc. I'm also interested in next generation rewrites, and keen to chat about it soon. I'll try to get my thoughts down and share 
+
+## Goals 
+
+- more consistent spatial classes
+- bbox/extent must have a CRS
+- CRS is wkt
+- any dim-consistent object allowed (matrix, df, tbl_df)
+- flexible build functions, focus on best-guess rather than strict
+
+## sp with dplyr
+
+Basic tests. 
+
+```{r}
+library(sp)
+library(dplyr)
+df <- data.frame(x = 1:10, y = rnorm(10), a = letters[1:10])
+d_f <- as_data_frame(df)
+
+data(meuse.grid)
+meuse_grid <- as_data_frame(meuse.grid)
+m = SpatialPixelsDataFrame(points = meuse_grid[c("x", "y")], data = meuse_grid)
+meuse_pts <- SpatialPointsDataFrame(SpatialPoints(as.matrix(meuse_grid[, c("x", "y")])), meuse_grid)
+gridded(meuse_pts) <- TRUE
+fullgrid(meuse_pts) <- TRUE
+
+
+new("SpatialPointsDataFrame", SpatialPoints(as.matrix(d_f[,1:2])), data = d_f)
+new("SpatialGridDataFrame", )
+coordinates(d_f) <- c("x", "y")
+
+ 
+ 
+ library(dplyr)
+ library(sp)
+ library(foreign)
+ d_f <- as_data_frame(read.dbf(system.file("vectors", "cities.dbf",  package = "rgdal"), as.is = TRUE))
+ pts <- matrix(rnorm(nrow(d_f) * 2), ncol = 2)
+ 
+ sp_dplyr <- new("SpatialPointsDataFrame", SpatialPoints(pts), data = d_f)
+ ```
+ 
+ 
+
+ 

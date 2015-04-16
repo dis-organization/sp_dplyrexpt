@@ -1,8 +1,8 @@
-"SpatialPointsDataFrame" = function(coords, data, coords.nrs = numeric(0), 
+"SpatialPointsDataFrame" = function(coords, data, coords.nrs = numeric(0),
 		proj4string = CRS(as.character(NA)), match.ID, bbox = NULL) {
 
 	if (!is(coords, "SpatialPoints"))
-		coords = coordinates(coords) 
+		coords = coordinates(coords)
 		# make sure data.frame becomes double matrix; NA checks
 	mtch = NULL
 	cc.ID = dimnames(coords)[[1]]
@@ -18,7 +18,7 @@
 	} else if (is.character(match.ID)) {
         row.names(data) = data[, match.ID[1]]
         match.ID = TRUE
-    } 
+    }
 
 	if (match.ID) {
 		if (!is.null(cc.ID) && is(data, "data.frame")) { # match ID:
@@ -42,13 +42,12 @@
 setMethod("coordinates", "SpatialPointsDataFrame", function(obj) obj@coords)
 
 setMethod("addAttrToGeom", signature(x = "SpatialPoints", y = "data.frame"),
-	function(x, y, match.ID, ...) 
+	function(x, y, match.ID, ...)
 		SpatialPointsDataFrame(x, y, match.ID = match.ID, ...)
 )
 
-setReplaceMethod("coordinates", signature(object = "ANY", value = "ANY"),
-  function(object, value) {
-    if (!.canbedf(object)) stop("data should be or extend a data frame")
+
+.replaceCoords_maybeDF <-   function(object, value) {
 	coord.numbers = NULL
 	if (inherits(value, "formula")) {
 		cc = model.frame(value, object, na.action = na.fail) # retrieve coords
@@ -84,10 +83,15 @@ setReplaceMethod("coordinates", signature(object = "ANY", value = "ANY"),
 	SpatialPointsDataFrame(coords = cc, data = object, coords.nrs = stripped,
 		match.ID = FALSE)
   }
+
+setReplaceMethod("coordinates", signature(object = "maybeDF", value = "ANY"),
+                 .replaceCoords_maybeDF
 )
 
+
+
 .asWKT = FALSE
-print.SpatialPointsDataFrame = function(x, ..., digits = getOption("digits"), 
+print.SpatialPointsDataFrame = function(x, ..., digits = getOption("digits"),
 		asWKT = .asWKT) {
 	#EJP, Fri May 21 12:40:59 CEST 2010
 	if (asWKT)
@@ -125,13 +129,13 @@ setAs("SpatialPointsDataFrame", "data.frame", function(from)
 	as.data.frame.SpatialPointsDataFrame(from))
 
 names.SpatialPointsDataFrame <- function(x) names(x@data)
-"names<-.SpatialPointsDataFrame" <- function(x, value) { 
+"names<-.SpatialPointsDataFrame" <- function(x, value) {
 	checkNames(value)
-	names(x@data) = value 
-	x 
+	names(x@data) = value
+	x
 }
 
-points.SpatialPointsDataFrame = function(x, y = NULL, ...) 
+points.SpatialPointsDataFrame = function(x, y = NULL, ...)
 	points(as(x, "SpatialPoints"), ...)
 
 text.SpatialPointsDataFrame = function(x, ...) {
@@ -165,7 +169,7 @@ setMethod("[", "SpatialPointsDataFrame", function(x, i, j, ..., drop = TRUE) {
 	if (missing.i && missing.j) {
 		i = TRUE
 		j = TRUE
-	} else if (missing.j && !missing.i) { 
+	} else if (missing.j && !missing.i) {
 		if (nargs == 2) {
 			j = i
 			i = TRUE
@@ -178,9 +182,9 @@ setMethod("[", "SpatialPointsDataFrame", function(x, i, j, ..., drop = TRUE) {
 		stop("matrix argument not supported in SpatialPointsDataFrame selection")
 	if (is(i, "Spatial"))
 		i = !is.na(over(x, geometry(i)))
-	if (is.character(i)) 
+	if (is.character(i))
 		i <- match(i, row.names(x))
-	if (any(is.na(i))) 
+	if (any(is.na(i)))
 		stop("NAs not permitted in row index")
 	if (!isTRUE(j)) # i.e., we do some sort of column selection
 		x@coords.nrs = numeric(0) # will move coordinate colums last

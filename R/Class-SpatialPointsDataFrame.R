@@ -1,19 +1,18 @@
-.canbedf <- function(x) {
-  d <- dim(x)
-  nm <- names(x)
-  length(d) == 2 & length(nm) == d[2]
-  
-}
+#.canbedf <- function(x) {
+#  d <- dim(x)
+#  nm <- names(x)
+#  length(d) == 2 & length(nm) == d[2]
+#
+#}
 
 
 setClass("SpatialPointsDataFrame",
-	contains = "SpatialPoints", 
-	slots = c(data = "ANY", coords.nrs = "numeric"),
+	contains = "SpatialPoints",
+	slots = c(data = "maybeDF", coords.nrs = "numeric"),
 	prototype = list(bbox = matrix(NA), proj4string = CRS(as.character(NA)),
-		coords = matrix(NA), data = data.frame(), 
+		coords = matrix(NA), data = data_frame(),
 		coords.nrs = numeric(0)),
 	validity = function(object) {
-	  if (!.canbedf(object@data)) stop("data should be or extend a data frame")
 		# if (ncol(object@data) == 0)
 		# 	stop("data.frame is empty (possibly after stripping coordinate columns): use SpatialPoints() to create points-only object")
 		if (nrow(object@data) != nrow(object@coords))

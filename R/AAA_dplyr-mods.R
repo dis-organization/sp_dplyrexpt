@@ -22,4 +22,3 @@ setMethod("as_data_frame", "Spatial", function(x) as_data_frame(as.data.frame(x)
 ## in code examples in intro_sp_dplyr.R
 ##added %>% as_data_frame
 
-
